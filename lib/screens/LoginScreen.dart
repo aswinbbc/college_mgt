@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ihrd/screens/dashboardStudent.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:professor_interface/HandleNetworking.dart';
-import 'package:professor_interface/Models/FutureResponse.dart';
-import 'package:professor_interface/components/ReusableButton.dart';
-import 'package:professor_interface/screens/changePasswordScreen.dart';
-import 'package:professor_interface/screens/coursesList.dart';
-import 'package:professor_interface/screens/dashboard.dart';
+import 'package:ihrd/HandleNetworking.dart';
+import 'package:ihrd/Models/FutureResponse.dart';
+import 'package:ihrd/components/ReusableButton.dart';
+import 'package:ihrd/screens/changePasswordScreen.dart';
+import 'package:ihrd/screens/coursesList.dart';
+import 'package:ihrd/screens/dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../utils/network_service.dart';
@@ -161,24 +162,24 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = false;
       });
       if (!(value['err'] as bool)) {
-        if (value['role'] != 'teacher') {
-          Fluttertoast.showToast(msg: "you dont have permission");
-          return;
-        }
         // Obtain shared preferences.
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('user_id', value['login_id']);
-        await prefs.setBool('isUserLoggedIn', true);
-        // await prefs.setString('name', value['name']);
-        // await prefs.setString('departmant', value['department']);
-        // await prefs.setString('sem', value['sem']);
-        // await prefs.setString('reg_no', value['reg_no']);
-        // await prefs.setString('mobile', value['mobile']);
-        // await prefs.setString('email', value['email']);
-        Fluttertoast.showToast(msg: "welcome.");
+        if (value['role'] == 'teacher') {
+          await prefs.setBool('isUserLoggedIn', true);
+          await prefs.setBool('teacher', true);
 
-        Route route = MaterialPageRoute(builder: (context) => Dashboard());
-        Navigator.pushReplacement(myContext!, route);
+          Fluttertoast.showToast(msg: "welcome.");
+          Route route = MaterialPageRoute(builder: (context) => Dashboard());
+          Navigator.pushReplacement(myContext!, route);
+        } else {
+          await prefs.setBool('isUserLoggedIn', true);
+
+          Fluttertoast.showToast(msg: "welcome.");
+          Route route =
+              MaterialPageRoute(builder: (context) => StudentDashboard());
+          Navigator.pushReplacement(myContext!, route);
+        }
       } else {
         Fluttertoast.showToast(msg: "Something went wrong..");
       }

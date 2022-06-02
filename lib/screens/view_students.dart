@@ -66,9 +66,21 @@ class _ViewStudentState extends State<ViewStudent> {
                     return ListView.builder(
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            title: Text(snapshot.data!.elementAt(index).name!),
+                        Student student = snapshot.data!.elementAt(index);
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Card(
+                            child: ListTile(
+                              leading: Icon(Icons.person, size: 50),
+                              title: Text(student.name!),
+                              subtitle: Text(
+                                  'mobile : ${student.mobile!}\nemail : ${student.email!}'),
+                              trailing: Text(student.regNo!),
+                            ),
+                            elevation: 8,
+                            shadowColor: Colors.green,
+                            shape: BeveledRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
                           ),
                         );
                       },

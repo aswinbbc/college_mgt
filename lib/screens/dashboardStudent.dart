@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ihrd/Models/singe_student.dart';
 import 'package:ihrd/Models/teacher_model.dart';
 import 'package:ihrd/screens/add_attendance.dart';
-import 'package:ihrd/screens/add_mark.dart';
 import 'package:ihrd/screens/add_notifcation.dart';
 import 'package:ihrd/screens/coursesList.dart';
-import 'package:ihrd/screens/teacher_view_student.dart';
+import 'package:ihrd/screens/view_library.dart';
+import 'package:ihrd/screens/view_mark.dart';
 import 'package:ihrd/screens/view_notification.dart';
 import 'package:ihrd/screens/view_students.dart';
 import 'package:ihrd/utils/constant.dart';
@@ -13,14 +14,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/network_service.dart';
 
-class Dashboard extends StatefulWidget {
-  Dashboard({Key? key}) : super(key: key);
+class StudentDashboard extends StatefulWidget {
+  StudentDashboard({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<StudentDashboard> createState() => _StudentDashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _StudentDashboardState extends State<StudentDashboard> {
+  String regno = "1";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,41 +51,35 @@ class _DashboardState extends State<Dashboard> {
           Divider(),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddAttendace()));
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => ViewStudent()));
             },
             child: Card(
-              child: ListTile(title: Text("add attendance")),
+              child: ListTile(title: Text("View attendance")),
             ),
           ),
           Divider(),
           GestureDetector(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ViewStudent()));
+                  MaterialPageRoute(builder: (context) => ViewLibrary()));
             },
             child: Card(
-              child: ListTile(title: Text("view student details")),
+              child: ListTile(title: Text("View Library books")),
             ),
           ),
-          // Divider(),
-          // GestureDetector(
-          //   onTap: () {
-          //     Navigator.push(context,
-          //         MaterialPageRoute(builder: (context) => AddNotification()));
-          //   },
-          //   child: Card(
-          //     child: ListTile(title: Text("view library")),
-          //   ),
-          // ),
           Divider(),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddNotification()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ViewMark(
+                            regno: regno,
+                          )));
             },
             child: Card(
-              child: ListTile(title: Text("add notification")),
+              child: ListTile(title: Text("view Mark")),
             ),
           ),
           Divider(),
@@ -94,18 +90,6 @@ class _DashboardState extends State<Dashboard> {
             },
             child: Card(
               child: ListTile(title: Text("view notification")),
-            ),
-          ),
-          Divider(),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => TeacherViewStudent()));
-            },
-            child: Card(
-              child: ListTile(title: Text("Add mark")),
             ),
           ),
           Divider(),
@@ -132,18 +116,19 @@ class _DashboardState extends State<Dashboard> {
               })
         ],
       ),
-      backgroundColor: Colors.blue[300],
+      backgroundColor: Colors.green[300],
       body: SafeArea(
         child: Center(
           child: FutureBuilder(
             future: getProfile(),
-            builder: (context, AsyncSnapshot<Teacher> snapshot) {
+            builder: (context, AsyncSnapshot<SingleStudent> snapshot) {
               if (snapshot.hasData) {
+                regno = snapshot.data!.regNo!;
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      snapshot.data!.tName!,
+                      snapshot.data!.name!,
                       style: TextStyle(
                         fontFamily: 'SourceSansPro',
                         fontSize: 25,
@@ -176,7 +161,7 @@ class _DashboardState extends State<Dashboard> {
                             color: Colors.teal[900],
                           ),
                           title: Text(
-                            '+91 ${snapshot.data!.tPhone}',
+                            '+91 ${snapshot.data!.mobile}',
                             style: TextStyle(
                                 fontFamily: 'BalooBhai', fontSize: 20.0),
                           ),
@@ -191,12 +176,44 @@ class _DashboardState extends State<Dashboard> {
                           color: Colors.teal[900],
                         ),
                         title: Text(
-                          '${snapshot.data!.tEmail}',
+                          '${snapshot.data!.address}',
                           style:
                               TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
                         ),
                       ),
-                    )
+                    ),
+                    Card(
+                      color: Colors.white,
+                      margin: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 25.0),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.email,
+                          color: Colors.teal[900],
+                        ),
+                        title: Text(
+                          '${snapshot.data!.email}',
+                          style:
+                              TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.white,
+                      margin: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 25.0),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.email,
+                          color: Colors.teal[900],
+                        ),
+                        title: Text(
+                          'Reg No : ${snapshot.data!.regNo}',
+                          style:
+                              TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+                        ),
+                      ),
+                    ),
                   ],
                 );
               } else {
@@ -249,10 +266,10 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Future<Teacher> getProfile() async {
+  Future<SingleStudent> getProfile() async {
     final id = await Constants.UserId;
-    final json = await getData("view_teacher.php", params: {"teacher_id": id});
+    final json = await getData("single_student.php", params: {"id": id});
     print(json);
-    return Teacher.fromJson(json);
+    return SingleStudent.fromJson(json);
   }
 }

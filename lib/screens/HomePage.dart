@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:professor_interface/screens/Page1.dart';
-import 'package:professor_interface/screens/Page2.dart';
+import 'package:ihrd/screens/Page1.dart';
+import 'package:ihrd/screens/Page2.dart';
 
 class HomePage extends StatefulWidget {
   final String id;

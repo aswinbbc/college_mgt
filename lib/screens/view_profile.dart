@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:professor_interface/components/dep_dropdown.dart';
-import 'package:professor_interface/components/sem_dropdown.dart';
+import 'package:ihrd/components/dep_dropdown.dart';
+import 'package:ihrd/components/sem_dropdown.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);

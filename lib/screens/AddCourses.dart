@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import 'package:professor_interface/HandleNetworking.dart';
-import 'package:professor_interface/components/ReusableButton.dart';
+import 'package:ihrd/HandleNetworking.dart';
+import 'package:ihrd/components/ReusableButton.dart';
 
 class AddCourses extends StatefulWidget {
   @override

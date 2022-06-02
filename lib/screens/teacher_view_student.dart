@@ -1,36 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ihrd/Models/attendance_model.dart';
-import 'package:ihrd/Models/student_model.dart';
-import 'package:ihrd/components/dep_dropdown.dart';
-import 'package:ihrd/components/sem_dropdown.dart';
+import 'package:ihrd/screens/add_mark.dart';
 
-import '../components/attendance_component.dart';
+import '../Models/student_model.dart';
+import '../components/dep_dropdown.dart';
+import '../components/sem_dropdown.dart';
 import '../utils/network_service.dart';
 
-class AddAttendace extends StatefulWidget {
-  AddAttendace({Key? key}) : super(key: key);
+class TeacherViewStudent extends StatefulWidget {
+  const TeacherViewStudent({Key? key}) : super(key: key);
 
   @override
-  State<AddAttendace> createState() => _AddAttendaceState();
+  State<TeacherViewStudent> createState() => _TeacherViewStudentState();
 }
 
-class _AddAttendaceState extends State<AddAttendace> {
+class _TeacherViewStudentState extends State<TeacherViewStudent> {
   bool isLoaded = false;
   String semester = "", department = "";
-  List<AttendanceModel> attendance = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      floatingActionButton: Visibility(
-        visible: isLoaded,
-        child: ElevatedButton(
-            child: Text('submit'),
-            onPressed: () {
-              addAttendaces();
-            }),
-      ),
       body: Column(children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -79,12 +68,33 @@ class _AddAttendaceState extends State<AddAttendace> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         Student student = snapshot.data!.elementAt(index);
-                        return AttendanceCard(
-                          attendanceModel: attendance.elementAt(index),
-                          student: student,
-                          onChange: (value) {
-                            attendance.elementAt(index).attendance = value;
-                          },
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Card(
+                            child: ListTile(
+                              leading: Icon(Icons.person, size: 50),
+                              title: Text(student.name!),
+                              subtitle: Text('Register No : ${student.regNo!}'),
+                              trailing: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AddMark(
+                                                department: department,
+                                                name: student.name!,
+                                                regno: student.regNo!,
+                                                sem: semester,
+                                              )));
+                                },
+                                child: Text("Add mark"),
+                              ),
+                            ),
+                            elevation: 8,
+                            shadowColor: Colors.green,
+                            shape: BeveledRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
                         );
                       },
                     );
@@ -104,27 +114,6 @@ class _AddAttendaceState extends State<AddAttendace> {
     List json = await getData("view_student_list.php",
         params: {"department": department, "sem": semester});
     print(json);
-    attendance = [];
-    final list = json.map((e) {
-      Student student = Student.fromJson(e);
-      attendance.add(AttendanceModel(id: student.regNo));
-      return student;
-    }).toList();
-
-    return list;
-  }
-
-  addAttendaces() async {
-    attendance.forEach((element) async {
-      Fluttertoast.showToast(msg: "Adding attendance, Please wait..");
-      final result = await getData("add_attendance.php", params: {
-        "sem": semester,
-        "department": department,
-        "subject": "nil",
-        "reg_no": element.id,
-        "attend": element.attendance! ? "present" : "absent",
-      });
-      print(result);
-    });
+    return json.map((e) => Student.fromJson(e)).toList();
   }
 }

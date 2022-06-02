@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:professor_interface/utils/network_service.dart';
+import 'package:ihrd/utils/network_service.dart';
 import 'package:select_form_field/select_form_field.dart';
 
 class depDropdown extends StatefulWidget {

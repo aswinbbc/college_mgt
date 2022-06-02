@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:professor_interface/HandleNetworking.dart';
-import 'package:professor_interface/components/EnrolledStudentTile.dart';
+import 'package:ihrd/HandleNetworking.dart';
+import 'package:ihrd/components/EnrolledStudentTile.dart';
 
 class Page2 extends StatefulWidget {
   final String id;

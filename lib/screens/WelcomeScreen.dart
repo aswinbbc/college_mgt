@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:professor_interface/components/ReusableButton.dart';
-import 'package:professor_interface/screens/RegisterScreen.dart';
-import 'package:professor_interface/screens/LoginScreen.dart';
+import 'package:ihrd/components/ReusableButton.dart';
+import 'package:ihrd/screens/RegisterScreen.dart';
+import 'package:ihrd/screens/LoginScreen.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomeScreen extends StatelessWidget {

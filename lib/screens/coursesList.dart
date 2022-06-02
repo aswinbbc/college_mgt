@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:professor_interface/HandleNetworking.dart';
-import 'package:professor_interface/components/CourseTile.dart';
-import 'package:professor_interface/screens/AddCourses.dart';
-import 'package:professor_interface/screens/dashboard.dart';
-import 'package:professor_interface/screens/view_profile.dart';
+import 'package:ihrd/HandleNetworking.dart';
+import 'package:ihrd/components/CourseTile.dart';
+import 'package:ihrd/screens/AddCourses.dart';
+import 'package:ihrd/screens/dashboard.dart';
+import 'package:ihrd/screens/view_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CoursesList extends StatefulWidget {

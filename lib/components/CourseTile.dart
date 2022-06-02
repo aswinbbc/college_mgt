@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
-import 'package:professor_interface/HandleNetworking.dart';
-import 'package:professor_interface/screens/HomePage.dart';
+import 'package:ihrd/HandleNetworking.dart';
+import 'package:ihrd/screens/HomePage.dart';
 
 class CourseTile extends StatelessWidget {
   final String id;

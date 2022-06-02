@@ -2,10 +2,10 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:professor_interface/Models/FutureResponse.dart';
-import 'package:professor_interface/components/CourseTile.dart';
-import 'package:professor_interface/components/EnrolledStudentTile.dart';
-import 'package:professor_interface/utils/constant.dart';
+import 'package:ihrd/Models/FutureResponse.dart';
+import 'package:ihrd/components/CourseTile.dart';
+import 'package:ihrd/components/EnrolledStudentTile.dart';
+import 'package:ihrd/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HandleNetworking {
