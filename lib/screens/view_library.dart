@@ -31,7 +31,7 @@ class _ViewLibraryState extends State<ViewLibrary> {
                       leading: Icon(Icons.book, size: 50),
                       title: Text(book.bookName!),
                       subtitle: Text(
-                          'author : ${book.author!}\nedition : ${book.bookEdition!}\nShelf number : ${book.shelfNo!}'),
+                          'author : ${book.author!}\nedition : ${book.bookEdition!}\nShelf number : ${book.shelfNo!}\nBook status : ${book.status!}'),
                       trailing: Text('${book.price!}Rs'),
                     ),
                     elevation: 8,

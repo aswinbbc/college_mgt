@@ -40,12 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 'https://assets1.lottiefiles.com/packages/lf20_fJ7CVd.json',
               ),
             ),
-            // Align(
-            //   alignment: Alignment.bottomLeft,
-            //   child: Lottie.network(
-            //     'https://assets1.lottiefiles.com/packages/lf20_lrvt3krh.json',
-            //   ),
-            // ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Lottie.network(
+                'https://assets1.lottiefiles.com/packages/lf20_lrvt3krh.json',
+              ),
+            ),
             Center(
               child: Container(
                 // color: Colors.white,

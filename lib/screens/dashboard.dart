@@ -13,6 +13,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/network_service.dart';
+import 'view_library.dart';
 
 class Dashboard extends StatefulWidget {
   Dashboard({Key? key}) : super(key: key);
@@ -55,6 +56,16 @@ class _DashboardState extends State<Dashboard> {
             },
             child: Card(
               child: ListTile(title: Text("add attendance")),
+            ),
+          ),
+          Divider(),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ViewLibrary()));
+            },
+            child: Card(
+              child: ListTile(title: Text("View Library books")),
             ),
           ),
           Divider(),

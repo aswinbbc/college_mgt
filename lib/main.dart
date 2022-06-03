@@ -6,7 +6,10 @@ import 'package:ihrd/screens/dashboard.dart';
 import 'package:ihrd/screens/dashboardStudent.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  ErrorWidget.builder = (FlutterErrorDetails details) => Container();
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
