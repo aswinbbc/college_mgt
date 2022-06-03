@@ -1,4 +1,4 @@
-# AMS Faculty Portal
+# college managment app
 
 <img src="images/flutter.png" height="100" >
 

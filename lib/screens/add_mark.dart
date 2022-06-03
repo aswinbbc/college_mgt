@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ihrd/utils/network_service.dart';
+import 'package:lottie/lottie.dart';
 
 class AddMark extends StatefulWidget {
   const AddMark(
@@ -62,136 +63,148 @@ class _AddMarkState extends State<AddMark> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: sub1,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter subject 1"),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: sub1,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter subject 1"),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: mark1,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter mark 1"),
+                          Expanded(
+                            child: TextField(
+                              controller: mark1,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter mark 1"),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: sub2,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter subject 2"),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: sub2,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter subject 2"),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: mark2,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter mark 2"),
+                          Expanded(
+                            child: TextField(
+                              controller: mark2,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter mark 2"),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: sub3,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter subject 3"),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: sub3,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter subject 3"),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: mark3,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter mark 3"),
+                          Expanded(
+                            child: TextField(
+                              controller: mark3,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter mark 3"),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: sub4,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter subject 4"),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: sub4,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter subject 4"),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: mark4,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter mark 4"),
+                          Expanded(
+                            child: TextField(
+                              controller: mark4,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter mark 4"),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: sub5,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter subject 5"),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: sub5,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter subject 5"),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: mark5,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter mark 5"),
+                          Expanded(
+                            child: TextField(
+                              controller: mark5,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter mark 5"),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: sub6,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter subject 6"),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: sub6,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter subject 6"),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: mark6,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Enter mark 6"),
+                          Expanded(
+                            child: TextField(
+                              controller: mark6,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter mark 6"),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],

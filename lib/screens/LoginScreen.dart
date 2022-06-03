@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ihrd/screens/dashboardStudent.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:ihrd/HandleNetworking.dart';
 import 'package:ihrd/Models/FutureResponse.dart';
@@ -31,123 +32,139 @@ class _LoginScreenState extends State<LoginScreen> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        body: Center(
-          child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(36.0),
-              child: ListView(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: 100,
-                  ),
-                  SizedBox(
-                    height: 155.0,
-                    child: Image.asset(
-                      "images/logo.png",
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  SizedBox(height: 45.0),
-                  TextField(
-                    onChanged: (String value) {
-                      email = value;
-                    },
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      hintText: "Email",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(32.0)),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.black, width: 2.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 25.0),
-                  TextField(
-                    onChanged: (String value) {
-                      password = value;
-                    },
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      hintText: "Password",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(32.0)),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.black, width: 2.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 35.0,
-                  ),
-                  Builder(builder: (BuildContext context) {
-                    return GestureDetector(
-                      child: ReusableButton('Login'),
-                      onTap: () async {
-                        if (email == null || password == null) {
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text("Invalid input"),
-                          ));
-
-                          return;
-                        }
-
-                        setState(() {
-                          isLoading = true;
-                        });
-
-                        login(email!, password!, context);
-                      },
-                    );
-                  }),
-                  SizedBox(
-                    height: 25.0,
-                  ),
-                  // Center(
-                  //   child: GestureDetector(
-                  //     onTap: () {
-                  //       Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //             builder: (context) => ChangePasswordScreen()),
-                  //       );
-                  //     },
-                  //     child: Text(
-                  //       'Forget Password',
-                  //       style: TextStyle(
-                  //         color: Colors.blue,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 18.0),
-                    child: Text(
-                      widget.msg,
-                      style: TextStyle(
-                        color: Colors.green,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                ],
+        body: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Lottie.network(
+                'https://assets1.lottiefiles.com/packages/lf20_fJ7CVd.json',
               ),
             ),
-          ),
+            // Align(
+            //   alignment: Alignment.bottomLeft,
+            //   child: Lottie.network(
+            //     'https://assets1.lottiefiles.com/packages/lf20_lrvt3krh.json',
+            //   ),
+            // ),
+            Center(
+              child: Container(
+                // color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(36.0),
+                  child: ListView(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 100,
+                      ),
+                      SizedBox(
+                        height: 155.0,
+                        child: Image.asset(
+                          "images/logo.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      SizedBox(height: 45.0),
+                      TextField(
+                        onChanged: (String value) {
+                          email = value;
+                        },
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                          hintText: "Email",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(32.0)),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.black, width: 2.0),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 25.0),
+                      TextField(
+                        onChanged: (String value) {
+                          password = value;
+                        },
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                          hintText: "Password",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(32.0)),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.black, width: 2.0),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 35.0,
+                      ),
+                      Builder(builder: (BuildContext context) {
+                        return GestureDetector(
+                          child: ReusableButton('Login'),
+                          onTap: () async {
+                            if (email == null || password == null) {
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text("Invalid input"),
+                              ));
+
+                              return;
+                            }
+
+                            setState(() {
+                              isLoading = true;
+                            });
+
+                            login(email!, password!, context);
+                          },
+                        );
+                      }),
+                      SizedBox(
+                        height: 25.0,
+                      ),
+                      // Center(
+                      //   child: GestureDetector(
+                      //     onTap: () {
+                      //       Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => ChangePasswordScreen()),
+                      //       );
+                      //     },
+                      //     child: Text(
+                      //       'Forget Password',
+                      //       style: TextStyle(
+                      //         color: Colors.blue,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 18.0),
+                        child: Text(
+                          widget.msg,
+                          style: TextStyle(
+                            color: Colors.green,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

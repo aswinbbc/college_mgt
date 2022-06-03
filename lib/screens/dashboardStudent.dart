@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:ihrd/Models/singe_student.dart';
 import 'package:ihrd/Models/teacher_model.dart';
 import 'package:ihrd/screens/add_attendance.dart';
+import 'package:ihrd/screens/add_feedback.dart';
 import 'package:ihrd/screens/add_notifcation.dart';
 import 'package:ihrd/screens/coursesList.dart';
 import 'package:ihrd/screens/view_library.dart';
@@ -10,6 +11,7 @@ import 'package:ihrd/screens/view_mark.dart';
 import 'package:ihrd/screens/view_notification.dart';
 import 'package:ihrd/screens/view_students.dart';
 import 'package:ihrd/utils/constant.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/network_service.dart';
@@ -86,6 +88,16 @@ class _StudentDashboardState extends State<StudentDashboard> {
           GestureDetector(
             onTap: () {
               Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddFeedback()));
+            },
+            child: Card(
+              child: ListTile(title: Text("Add feedback")),
+            ),
+          ),
+          Divider(),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
                   MaterialPageRoute(builder: (context) => NotificationView()));
             },
             child: Card(
@@ -118,111 +130,127 @@ class _StudentDashboardState extends State<StudentDashboard> {
       ),
       backgroundColor: Colors.green[300],
       body: SafeArea(
-        child: Center(
-          child: FutureBuilder(
-            future: getProfile(),
-            builder: (context, AsyncSnapshot<SingleStudent> snapshot) {
-              if (snapshot.hasData) {
-                regno = snapshot.data!.regNo!;
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      snapshot.data!.name!,
-                      style: TextStyle(
-                        fontFamily: 'SourceSansPro',
-                        fontSize: 25,
-                      ),
-                    ),
-                    Text(
-                      'Welcome',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'SourceSansPro',
-                        color: Colors.red[400],
-                        letterSpacing: 2.5,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                      width: 200,
-                      child: Divider(
-                        color: Colors.teal[100],
-                      ),
-                    ),
-                    Text("Keep visiting ihrd.com for more contents"),
-                    Card(
-                        color: Colors.white,
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 25.0),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.phone,
-                            color: Colors.teal[900],
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Lottie.network(
+                'https://assets1.lottiefiles.com/private_files/lf30_kvdn44jg.json',
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Lottie.network(
+                'https://assets1.lottiefiles.com/packages/lf20_nxsyeqbd.json',
+              ),
+            ),
+            Center(
+              child: FutureBuilder(
+                future: getProfile(),
+                builder: (context, AsyncSnapshot<SingleStudent> snapshot) {
+                  if (snapshot.hasData) {
+                    regno = snapshot.data!.regNo!;
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          snapshot.data!.name!,
+                          style: TextStyle(
+                            fontFamily: 'SourceSansPro',
+                            fontSize: 25,
                           ),
-                          title: Text(
-                            '+91 ${snapshot.data!.mobile}',
-                            style: TextStyle(
-                                fontFamily: 'BalooBhai', fontSize: 20.0),
+                        ),
+                        Text(
+                          'Welcome',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'SourceSansPro',
+                            color: Colors.red[400],
+                            letterSpacing: 2.5,
                           ),
-                        )),
-                    Card(
-                      color: Colors.white,
-                      margin: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 25.0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.cake,
-                          color: Colors.teal[900],
                         ),
-                        title: Text(
-                          '${snapshot.data!.address}',
-                          style:
-                              TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+                        SizedBox(
+                          height: 20.0,
+                          width: 200,
+                          child: Divider(
+                            color: Colors.teal[100],
+                          ),
                         ),
-                      ),
-                    ),
-                    Card(
-                      color: Colors.white,
-                      margin: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 25.0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.email,
-                          color: Colors.teal[900],
+                        Text("Keep visiting ihrd.com for more contents"),
+                        Card(
+                            color: Colors.white,
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 25.0),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.phone,
+                                color: Colors.teal[900],
+                              ),
+                              title: Text(
+                                '+91 ${snapshot.data!.mobile}',
+                                style: TextStyle(
+                                    fontFamily: 'BalooBhai', fontSize: 20.0),
+                              ),
+                            )),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 25.0),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.cake,
+                              color: Colors.teal[900],
+                            ),
+                            title: Text(
+                              '${snapshot.data!.address}',
+                              style: TextStyle(
+                                  fontSize: 20.0, fontFamily: 'Neucha'),
+                            ),
+                          ),
                         ),
-                        title: Text(
-                          '${snapshot.data!.email}',
-                          style:
-                              TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 25.0),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.email,
+                              color: Colors.teal[900],
+                            ),
+                            title: Text(
+                              '${snapshot.data!.email}',
+                              style: TextStyle(
+                                  fontSize: 20.0, fontFamily: 'Neucha'),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Card(
-                      color: Colors.white,
-                      margin: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 25.0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.email,
-                          color: Colors.teal[900],
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 25.0),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.email,
+                              color: Colors.teal[900],
+                            ),
+                            title: Text(
+                              'Reg No : ${snapshot.data!.regNo}',
+                              style: TextStyle(
+                                  fontSize: 20.0, fontFamily: 'Neucha'),
+                            ),
+                          ),
                         ),
-                        title: Text(
-                          'Reg No : ${snapshot.data!.regNo}',
-                          style:
-                              TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              } else {
-                return Center(
-                  child: Text("Loading.."),
-                );
-              }
-            },
-          ),
+                      ],
+                    );
+                  } else {
+                    return Center(
+                      child: Text("Loading.."),
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

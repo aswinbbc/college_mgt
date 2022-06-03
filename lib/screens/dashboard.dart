@@ -9,6 +9,7 @@ import 'package:ihrd/screens/teacher_view_student.dart';
 import 'package:ihrd/screens/view_notification.dart';
 import 'package:ihrd/screens/view_students.dart';
 import 'package:ihrd/utils/constant.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/network_service.dart';
@@ -134,78 +135,94 @@ class _DashboardState extends State<Dashboard> {
       ),
       backgroundColor: Colors.blue[300],
       body: SafeArea(
-        child: Center(
-          child: FutureBuilder(
-            future: getProfile(),
-            builder: (context, AsyncSnapshot<Teacher> snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      snapshot.data!.tName!,
-                      style: TextStyle(
-                        fontFamily: 'SourceSansPro',
-                        fontSize: 25,
-                      ),
-                    ),
-                    Text(
-                      'Welcome',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'SourceSansPro',
-                        color: Colors.red[400],
-                        letterSpacing: 2.5,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                      width: 200,
-                      child: Divider(
-                        color: Colors.teal[100],
-                      ),
-                    ),
-                    Text("Keep visiting ihrd.com for more contents"),
-                    Card(
-                        color: Colors.white,
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 25.0),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.phone,
-                            color: Colors.teal[900],
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Lottie.network(
+                'https://assets1.lottiefiles.com/private_files/lf30_kvdn44jg.json',
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Lottie.network(
+                'https://assets1.lottiefiles.com/packages/lf20_nxsyeqbd.json',
+              ),
+            ),
+            Center(
+              child: FutureBuilder(
+                future: getProfile(),
+                builder: (context, AsyncSnapshot<Teacher> snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          snapshot.data!.tName!,
+                          style: TextStyle(
+                            fontFamily: 'SourceSansPro',
+                            fontSize: 25,
                           ),
-                          title: Text(
-                            '+91 ${snapshot.data!.tPhone}',
-                            style: TextStyle(
-                                fontFamily: 'BalooBhai', fontSize: 20.0),
+                        ),
+                        Text(
+                          'Welcome',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'SourceSansPro',
+                            color: Colors.red[400],
+                            letterSpacing: 2.5,
                           ),
-                        )),
-                    Card(
-                      color: Colors.white,
-                      margin: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 25.0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.cake,
-                          color: Colors.teal[900],
                         ),
-                        title: Text(
-                          '${snapshot.data!.tEmail}',
-                          style:
-                              TextStyle(fontSize: 20.0, fontFamily: 'Neucha'),
+                        SizedBox(
+                          height: 20.0,
+                          width: 200,
+                          child: Divider(
+                            color: Colors.teal[100],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                );
-              } else {
-                return Center(
-                  child: Text("Loading.."),
-                );
-              }
-            },
-          ),
+                        Text("Keep visiting ihrd.com for more contents"),
+                        Card(
+                            color: Colors.white,
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 25.0),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.phone,
+                                color: Colors.teal[900],
+                              ),
+                              title: Text(
+                                '+91 ${snapshot.data!.tPhone}',
+                                style: TextStyle(
+                                    fontFamily: 'BalooBhai', fontSize: 20.0),
+                              ),
+                            )),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 25.0),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.cake,
+                              color: Colors.teal[900],
+                            ),
+                            title: Text(
+                              '${snapshot.data!.tEmail}',
+                              style: TextStyle(
+                                  fontSize: 20.0, fontFamily: 'Neucha'),
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  } else {
+                    return Center(
+                      child: Text("Loading.."),
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
