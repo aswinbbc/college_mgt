@@ -6,6 +6,7 @@ import 'package:ihrd/screens/add_attendance.dart';
 import 'package:ihrd/screens/add_feedback.dart';
 import 'package:ihrd/screens/add_notifcation.dart';
 import 'package:ihrd/screens/coursesList.dart';
+import 'package:ihrd/screens/view_attendance.dart';
 import 'package:ihrd/screens/view_library.dart';
 import 'package:ihrd/screens/view_mark.dart';
 import 'package:ihrd/screens/view_notification.dart';
@@ -25,6 +26,7 @@ class StudentDashboard extends StatefulWidget {
 
 class _StudentDashboardState extends State<StudentDashboard> {
   String regno = "1";
+  late SingleStudent student;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +55,12 @@ class _StudentDashboardState extends State<StudentDashboard> {
           Divider(),
           GestureDetector(
             onTap: () {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => ViewStudent()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AttendanceView(
+                            student: student,
+                          )));
             },
             child: Card(
               child: ListTile(title: Text("View attendance")),
@@ -149,6 +155,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                 future: getProfile(),
                 builder: (context, AsyncSnapshot<SingleStudent> snapshot) {
                   if (snapshot.hasData) {
+                    student = snapshot.data!;
                     regno = snapshot.data!.regNo!;
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
