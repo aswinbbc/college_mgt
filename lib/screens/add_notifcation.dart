@@ -70,7 +70,7 @@ class _AddNotificationState extends State<AddNotification> {
     }
     Fluttertoast.showToast(msg: "Notification added..");
     final result = await getData("add_notification.php", params: {
-      "title": titleController.text,
+      "id": titleController.text,
       "content": messageController.text,
     });
   }
