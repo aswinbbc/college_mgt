@@ -244,12 +244,13 @@ class _AddMarkState extends State<AddMark> {
       return;
     }
 
-    if ((int.parse(mark1.text.toString()) < 100) ||
-        (int.parse(mark2.text.toString()) < 100) ||
-        (int.parse(mark3.text.toString()) < 100) ||
-        (int.parse(mark4.text.toString()) < 100) ||
-        (int.parse(mark5.text.toString()) < 100) ||
-        (int.parse(mark6.text.toString()) < 100)) {
+    print(int.parse(mark1.text.toString()));
+    if (!((int.parse(mark1.text.toString()) <= 100) ||
+        (int.parse(mark2.text.toString()) <= 100) ||
+        (int.parse(mark3.text.toString()) <= 100) ||
+        (int.parse(mark4.text.toString()) <= 100) ||
+        (int.parse(mark5.text.toString()) <= 100) ||
+        (int.parse(mark6.text.toString()) <= 100))) {
       Fluttertoast.showToast(msg: "All fields must be valid..");
       return;
     }

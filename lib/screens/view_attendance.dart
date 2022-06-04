@@ -65,14 +65,14 @@ class _AttendanceViewState extends State<AttendanceView> {
 
   Future<Map<String, dynamic>> getpresent() async {
     final json = await getData("view_attandance_present.php",
-        params: {"reg_no": await Constants.UserId});
+        params: {"reg_no": widget.student.regNo});
     print(json);
     return json;
   }
 
   Future<Map<String, dynamic>> getabsent() async {
     final json = await getData("view_attandance_absent.php",
-        params: {"reg_no": await Constants.UserId});
+        params: {"reg_no": widget.student.regNo});
     print(json);
     return json;
   }

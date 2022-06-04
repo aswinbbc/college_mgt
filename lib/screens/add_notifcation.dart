@@ -20,7 +20,7 @@ class _AddNotificationState extends State<AddNotification> {
           onPressed: addNoti,
           child: Icon(Icons.add),
         ),
-        body: Column(
+        body: ListView(
           children: <Widget>[
             SizedBox(
               height: 50,

@@ -67,8 +67,9 @@ class _AddFeedbackState extends State<AddFeedback> {
     Fluttertoast.showToast(msg: "Notification added..");
     final id = await Constants.UserId;
     final result = await getData("add_feedback.php", params: {
-      "id": id,
-      "content": feedbackController.text,
+      "login_id": id,
+      "feedback": feedbackController.text,
     });
+    print(result);
   }
 }

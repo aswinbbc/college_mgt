@@ -27,7 +27,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-          child: Column(
+          child: ListView(
         children: [
           SizedBox(
             height: 50,
